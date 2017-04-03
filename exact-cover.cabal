@@ -1,0 +1,86 @@
+name:                      exact-cover
+version:                   0.1.0.0
+cabal-version:             >= 1.10
+build-type:                Simple
+author:                    Arthur Lee
+maintainer:                me@arthur.li
+homepage:                  https://github.com/arthurl/exact-cover
+bug-reports:               https://github.com/arthurl/exact-cover/issues
+synopsis:
+  Efficient exact cover solver.
+description:
+  Fast solver for exact set cover problems
+  (<http://en.wikipedia.org/wiki/Exact_cover>) using Algorithm X as described in
+  the paper /Dancing Links/, by Donald Knuth, in
+  /Millennial Perspectives in Computer Science/, P159, 2000
+  (<https://arxiv.org/abs/cs/0011047>).
+  .
+  To get started, see the documentation for the "Math.ExactCover" module below.
+  .
+  Build examples with @cabal install -fbuildExamples@ or @stack build --flag
+  exact-cover:buildExamples@. Examples include a Sudoku solver.
+category:                  Math, Algorithms
+extra-source-files:        cbits/*.h
+
+Flag buildExamples
+  description:
+    Build example executables.
+  default:                 False
+  manual:                  True
+
+library
+  exposed-modules:         Math.ExactCover
+                         , Math.ExactCover.Internal.DLX
+  build-depends:           base >= 4.6
+                         , containers >= 0.5
+  hs-source-dirs:          src
+  default-extensions:      OverloadedStrings
+                         , ViewPatterns
+  other-extensions:        ForeignFunctionInterface
+                         , CPP
+                         , EmptyDataDecls
+  ghc-options:             -funbox-strict-fields
+                           -Wall
+  include-dirs:            cbits
+  c-sources:               cbits/dlx.c
+  cc-options:              -std=c99
+  default-language:        Haskell2010
+
+executable sudoku
+  main-is:                 Main.hs
+  build-depends:           exact-cover
+                         , base
+                         , containers
+                         , vector
+                         , safe
+                         , boxes
+  other-modules:           Sudoku
+                         , Sudoku.Grid
+  hs-source-dirs:          examples/sudoku
+  default-extensions:      OverloadedStrings
+                         , ViewPatterns
+  if flag(buildExamples)
+    buildable:             True
+  else
+    buildable:             False
+  ghc-options:             -Wall
+  default-language:        Haskell2010
+
+test-suite tasty
+  type:                    exitcode-stdio-1.0
+  main-is:                 Main.hs
+  other-modules:           Math.ExactCover.Tests
+  build-depends:           exact-cover
+                         , base
+                         , tasty
+                         , tasty-hunit
+                         , containers
+  hs-source-dirs:          tests
+  default-extensions:      OverloadedStrings
+                         , ViewPatterns
+  ghc-options:             -Wall
+  default-language:        Haskell2010
+
+source-repository head
+  type:                    git
+  location:                https://github.com/arthurl/exact-cover
