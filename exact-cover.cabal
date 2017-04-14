@@ -24,6 +24,9 @@ description:
   exact-cover:buildExamples@. Examples include a Sudoku solver.
 category:                  Math, Algorithms
 extra-source-files:        cbits/*.h
+tested-with:               GHC == 7.10.3
+                         , GHC == 8.0.1
+                         , GHC == 8.0.2
 
 Flag buildExamples
   description:
