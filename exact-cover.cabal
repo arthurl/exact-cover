@@ -2,6 +2,9 @@ name:                      exact-cover
 version:                   0.1.0.0
 cabal-version:             >= 1.10
 build-type:                Simple
+license:                   BSD3
+license-file:              LICENSE.txt
+copyright:                 (c) 2017, Arthur Lee
 author:                    Arthur Lee
 maintainer:                me@arthur.li
 homepage:                  https://github.com/arthurl/exact-cover
