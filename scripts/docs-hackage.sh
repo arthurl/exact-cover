@@ -47,7 +47,7 @@ cabal haddock --builddir="$dir" --for-hackage --haddock-option=--hyperlinked-sou
 
 # Upload documentation as candidate
 curl -X PUT \
-     -u "$user" \  # --header "Authorization: X-ApiKey $APIKEY"
+     -u "$user" \
      -H 'Content-Type: application/x-tar' \
      -H 'Content-Encoding: gzip' \
      --data-binary "@$dir/$pkg-$ver-docs.tar.gz" \
