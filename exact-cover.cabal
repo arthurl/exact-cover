@@ -31,7 +31,7 @@ Flag buildExamples
 library
   exposed-modules:         Math.ExactCover
                          , Math.ExactCover.Internal.DLX
-  build-depends:           base >= 4.6
+  build-depends:           base >= 4.6 && < 5
                          , containers >= 0.5
   hs-source-dirs:          src
   default-extensions:      OverloadedStrings
