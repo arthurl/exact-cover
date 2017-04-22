@@ -23,7 +23,8 @@ description:
   Build examples with @cabal install -fbuildExamples@ or @stack build --flag
   exact-cover:buildExamples@. Examples include a Sudoku solver.
 category:                  Math, Algorithms
-extra-source-files:        cbits/*.h
+extra-source-files:        README.md
+                         , cbits/*.h
 tested-with:               GHC == 7.10.3
                          , GHC == 8.0.1
                          , GHC == 8.0.2
